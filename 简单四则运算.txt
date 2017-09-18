@@ -1,0 +1,77 @@
+#include<iostream>
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<conio.h>
+using namespace std;
+void main()
+{
+     int i,j,x,y,z,w,q,r;//q商，r余数，w交换
+     int answer[100],grade;
+     srand((unsigned)time(NULL));
+     for(i=1;i<=30;i++)
+	 {
+        x=rand()%99;  //产生随机数x为第一位数
+        y=rand()%99;  //产生随机数y为第二位数
+        z=rand()%4; //z用来确定随机产生的运算符号
+        if(z==0)//输出算术式
+        cout<<i<<"："<<x<<"+"<<y<<"="<<endl;
+
+        if(z==1)
+		{  
+		    if(x<y) { w=x;x=y;y=w;}
+           cout<<i<<"："<<x<<"-"<<y<<"="<<endl;
+		}
+        if(z==2)
+        cout<<i<<"："<<x<<"*"<<y<<"="<<endl;
+
+        if(z==3)
+		{
+	       if(y==0) 	y=1;
+           cout<<i<<"："<<x<<"/"<<y<<"="<<endl;
+		}
+        switch(z)
+		{
+            case 0:
+				   answer[z]=x+y;
+	               break;
+            case 1:
+			       answer[z]=x-y;
+	               break;
+           case 2:
+			       answer[z]=x*y;
+	               break;
+           case 3:
+			       printf("\n quotient= ");
+                   scanf("%d",&q);
+	               printf("\n remainder=");
+	               scanf("%d",&r);
+		           for(j=9;j>1;j++)
+				   {
+	                 if((x%j==0)&&(y%j==0))
+					 { x=x/j;y=y/j;}
+				   }
+                  if( (q==x/y)&&(r==x%y))
+				  {
+			        grade+=1;
+                    printf("You are right ! \n");
+				  }
+                  else
+                 printf("You are wrong !\n");
+		         break;
+ }
+	 
+    if(z<3)
+	{
+        scanf("%d",&q);
+		if(q==answer[z])
+		{
+	        grade+=1;
+		    printf("You are right !\n");
+		}
+		else
+			printf("You are wrong !\n");
+	}
+}
+
+}
